@@ -1,0 +1,2 @@
+class Complement < SalesRelationship
+end

@@ -1,0 +1,2 @@
+class Substitute < SalesRelationship
+end

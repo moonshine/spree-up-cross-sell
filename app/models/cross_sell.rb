@@ -1,0 +1,2 @@
+class CrossSell < SalesRelationship
+end
