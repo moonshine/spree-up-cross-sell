@@ -1,0 +1,19 @@
+<%= render :partial => 'admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'admin/shared/product_tabs', :locals => {:current => t("up_cross_sell") } %>
+<div id="selected-up_cross_sales">
+</div>
+
+
+<% form_tag('#') do %>
+  <label><%= t('search') %>:</label>
+  <input id="searchtext" size="25">
+<% end %>
+
+<%= observe_field(:searchtext,
+                  :frequency => 0.75,
+                  :update => :search_hits,
+                  :url => available_admin_product_up_cross_sales_url(@product),
+                  :with => "'q=' + value") %>  
+<br/>                 
+<div id="search_hits"></div>

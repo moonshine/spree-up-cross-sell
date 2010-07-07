@@ -10,11 +10,11 @@ class Admin::UpCrossSalesController < Admin::BaseController
 
   def available
     if params[:q].blank?
-      @available_up_cross_sales = []
+      @available_products = []
     else
-      @available_up_cross_sales = Product.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:q].downcase}%"])
+      @available_products = Product.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:q].downcase}%"])
     end
-    @available_up_cross_sales.delete_if { |accessory| @product.up_cross_sales.include?(accessory) }
+    @available_products.delete_if { |product| @product.up_cross_sales.include?(product) }
     respond_to do |format|
       format.html
       format.js {render :layout => false}
@@ -32,8 +32,8 @@ class Admin::UpCrossSalesController < Admin::BaseController
 
   def select
     @product = Product.find_by_param!(params[:product_id])
-    accessory = Product.find_by_permalink(params[:id])
-    @product.up_cross_sales << accessory
+    product = Product.find_by_permalink(params[:id])
+    @product.up_cross_sales << product
     @product.save
     @up_cross_sales = @product.up_cross_sales
     render :layout => false
