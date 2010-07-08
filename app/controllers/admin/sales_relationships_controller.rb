@@ -8,7 +8,6 @@ class Admin::SalesRelationshipsController < Admin::BaseController
     @sales_relationships = Hash.new
     @sales_relationships['up_sell_products'] = nil
     @sales_relationships['cross_sell_products'] = nil
-    @sales_relationships['substitute_products'] = nil
     @sales_relationships['complementary_products'] = nil
     @sales_relationships.each_key do |relationship|
       @sales_relationships[relationship] = instance_variable_set "@#{relationship}", @product.send(relationship)
