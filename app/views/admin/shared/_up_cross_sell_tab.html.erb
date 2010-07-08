@@ -1,5 +1,5 @@
-<% if url_options_authenticate?(:controller => 'admin/up_cross_sales') %>
+<% if url_options_authenticate?(:controller => 'admin/sales_relationships') %>
   <li <%= ' class="active"' if current == t("up_cross_sell") %>>
-  <%= link_to t("up_cross_sell"), selected_admin_product_up_cross_sales_url(@product) %>
+  <%= link_to t("up_cross_sell"), selected_admin_product_sales_relationships_url(@product) %>
 </li>
 <% end %>

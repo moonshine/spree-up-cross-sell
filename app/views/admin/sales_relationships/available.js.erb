@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  function displayRow(){
+    var row = document.getElementById("captionRow");
+    if (row.style.display == '') row.style.display = 'none';
+    else row.style.display = '';
+  }
+</script>
+<h4><%= t('available_products') %></h4>
+<table class="index">
+	<thead>
+		<tr>
+			<th><%= t("name") %></th>
+			<th><%= t("action") %></th>
+		</tr>
+	</thead>
+	<tbody>
+    <% @available_up_sell_products.each do |available_up_sell_product| %>
+      <tr id="<%= dom_id(available_up_sell_product, :sel)%>">
+        <td><%= available_up_sell_product.name %></td>
+		    <td class="actions">
+		      <%= link_to_remote icon('add') + ' ' + t('select'), 
+		                         {:url => select_admin_product_sales_relationship_url(@product, available_up_sell_product),
+		                         :update => 'selected-sales_realtionships',
+		                         :complete => "$('#{dom_id(available_up_sell_product, :sel)}').remove();"}, :class => 'iconlink' %>
+        </td>
+      </tr>
+    <% end %>
+    <% if @available_up_sell_products.empty? %>
+     <tr><td colspan="3"><%= t('no_match_found') %>.</td></tr>
+    <% end %>
+  </tbody>
+</table>

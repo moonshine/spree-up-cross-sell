@@ -1,0 +1,24 @@
+<table class="index">
+  <thead>
+  	<tr>
+  		<th><%= t("product") %></th>
+  		<th></th>
+  	</tr>
+  </thead>
+  <tbody>
+    <% up_sell_products.each do |product| %>
+      <tr id="<%= dom_id(product, :del)%>">
+        <td><%= product.name %></td>
+  	    <td class="actions">
+		      <%= link_to_remote  icon('delete') + ' ' + t('remove'), 
+		                         {:url => remove_admin_product_sales_relationship_url(@product, product),
+		                         :update => 'selected-sales_realtionships',
+		                         :complete => "$('#{dom_id(product, :del)}').remove();"}, :class => 'iconlink' %>
+  	    </td>        
+      </tr>
+    <% end %>
+    <% if up_sell_products.empty? %>
+     <tr><td colspan="3"><%= t('none') %>.</td></tr>
+    <% end %>
+  </tbody>
+</table>

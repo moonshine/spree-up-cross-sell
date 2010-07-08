@@ -2,6 +2,6 @@
 
 map.namespace :admin do |admin|
    admin.resources :products do |product|
-     product.resources :up_cross_sales, :member => {:select => :post, :remove => :post}, :collection => {:available => :post, :selected => :get}
+     product.resources :sales_relationships, :member => {:select => :post, :remove => :post}, :collection => {:available => :post, :selected => :get}
    end
 end
