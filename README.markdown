@@ -15,6 +15,8 @@ profitable product is offered.
 a customer adds a swimsuit to the cart they are presented with suggestions for
 beach towels, sunglasses and sunscreen.
 
+Note: Some concepts and code used from spree-accessories, see http://github.com/BDQ/spree-accessories
+
 ## Usage
 
 ### Run migration
@@ -34,5 +36,4 @@ you will need to develop this yourself.
 ## TODO list
 
 Tests
-
 
