@@ -1,20 +1,9 @@
 <%= render :partial => 'admin/shared/product_sub_menu' %>
 
 <%= render :partial => 'admin/shared/product_tabs', :locals => {:current => t("up_cross_sell") } %>
-<div id="selected-sales_realtionships">
-  <%= render :partial => "products_table", :locals => {:up_sell_products => @up_sell_products} %>
-</div>
 
-
-<% form_tag('#') do %>
-  <label><%= t('search') %>:</label>
-  <input id="searchtext" size="25">
+<% @sales_relationships.each do |relationship, relationship_products| %>
+  <h2><%= relationship.sub('_products', '').sub('_', ' ').capitalize %></h2>
+  <%= render :partial => "selected_relationship",
+    :locals => {:relationship_products => relationship_products, :relationship => relationship} %>
 <% end %>
-
-<%= observe_field(:searchtext,
-                  :frequency => 0.75,
-                  :update => :search_hits,
-                  :url => available_admin_product_sales_relationships_url(@product),
-                  :with => "'q=' + value") %>  
-<br/>                 
-<div id="search_hits"></div>

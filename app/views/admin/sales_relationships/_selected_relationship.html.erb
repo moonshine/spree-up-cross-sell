@@ -1,0 +1,21 @@
+<div id="selected-<%= relationship %>">
+  <% if relationship_products.nil? || relationship_products.empty? %>
+    <%= t('none_available') %>
+  <% else %>
+    <%= render :partial => "products_table", :locals => {:relationship_products => relationship_products, :relationship => relationship} %>
+  <% end %>
+</div>
+
+
+<% form_tag('#') do %>
+  <label><%= t('search') %>:</label>
+  <input id="searchtext-<%= relationship %>" size="25">
+<% end %>
+
+<%= observe_field("searchtext-#{relationship}",
+                  :frequency => 0.75,
+                  :update => "search-hits-#{relationship}",
+                  :url => available_admin_product_sales_relationships_url(@product),
+                  :with => "'q=' + value + '&relationship=#{relationship}'") %>
+<br/>                 
+<div id="search-hits-<%= relationship %>"></div>

@@ -14,18 +14,19 @@
 		</tr>
 	</thead>
 	<tbody>
-    <% @available_up_sell_products.each do |available_up_sell_product| %>
-      <tr id="<%= dom_id(available_up_sell_product, :sel)%>">
-        <td><%= available_up_sell_product.name %></td>
+    <% @available_relationship_products.each do |available_relationship_product| %>
+      <tr id="<%= dom_id(available_relationship_product, @relationship)%>">
+        <td><%= available_relationship_product.name %></td>
 		    <td class="actions">
 		      <%= link_to_remote icon('add') + ' ' + t('select'), 
-		                         {:url => select_admin_product_sales_relationship_url(@product, available_up_sell_product),
-		                         :update => 'selected-sales_realtionships',
-		                         :complete => "$('#{dom_id(available_up_sell_product, :sel)}').remove();"}, :class => 'iconlink' %>
+		                         {:url => select_admin_product_sales_relationship_url(@product, available_relationship_product),
+		                         :update => "selected-#{@relationship}",
+		                         :complete => "$('#{dom_id(available_relationship_product, @relationship)}').remove();",
+                             :with => "'relationship=#{@relationship}'"}, :class => 'iconlink' %>
         </td>
       </tr>
     <% end %>
-    <% if @available_up_sell_products.empty? %>
+    <% if @available_relationship_products.empty? %>
      <tr><td colspan="3"><%= t('no_match_found') %>.</td></tr>
     <% end %>
   </tbody>

@@ -6,18 +6,19 @@
   	</tr>
   </thead>
   <tbody>
-    <% up_sell_products.each do |product| %>
-      <tr id="<%= dom_id(product, :del)%>">
+    <% relationship_products.each do |product| %>
+      <tr id="<%= dom_id(product, relationship)%>">
         <td><%= product.name %></td>
   	    <td class="actions">
 		      <%= link_to_remote  icon('delete') + ' ' + t('remove'), 
 		                         {:url => remove_admin_product_sales_relationship_url(@product, product),
-		                         :update => 'selected-sales_realtionships',
-		                         :complete => "$('#{dom_id(product, :del)}').remove();"}, :class => 'iconlink' %>
+		                         :update => "selected-#{relationship}",
+		                         :complete => "$('#{dom_id(product, relationship)}').remove();",
+                             :with => "'relationship=#{relationship}'"}, :class => 'iconlink' %>
   	    </td>        
       </tr>
     <% end %>
-    <% if up_sell_products.empty? %>
+    <% if relationship_products.empty? %>
      <tr><td colspan="3"><%= t('none') %>.</td></tr>
     <% end %>
   </tbody>
