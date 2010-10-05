@@ -18,7 +18,7 @@ class Admin::SalesRelationshipsController < Admin::BaseController
     if params[:q].blank?
       @available_relationship_products = []
     else
-      @available_relationship_products = Product.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:q].downcase}%"])
+      @available_relationship_products = Product.find(:all, :conditions => ['lower(name) LIKE ? AND deleted_at IS NULL', "%#{params[:q].downcase}%"])
     end
     @relationship = params[:relationship]
     @available_relationship_products.delete_if { |product| @product.send(@relationship).include?(product) }
