@@ -1,3 +1,5 @@
+## NOTE: This extension is no longer supported. Do not use it, please seek other alternatives
+
 # Up/Cross Sell
 
 This is an extension to Spree that allows you to define relationships between products
